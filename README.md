@@ -1,2 +1,21 @@
 # Video-Chaptering
 You must have seen video chapters in a YouTube video. Video chaptering is the process of dividing a video into distinct segments, each labelled with a specific title or chapter name, to enhance navigation and user experience.
+# Introduction
+Video Chaptering involves using natural language processing (NLP) and machine learning techniques to automatically segment videos into coherent chapters based on their content. Expected results include structured and easily navigable videos to enhance the user experience by allowing viewers to quickly find and jump to specific sections of interest. It works by transcribing the audio content of the video and analyzing the text for key topics, themes, and transitions. So, to get started with Video Chaptering, we need to collect audio data from a video and transcribe it to divide it into chapters. I’ll collect data from a YouTube video for this task, for which we need to use the YouTube data API. You can follow the steps below to sign up and get access to the YouTube data API:
+1. Go to Google Cloud Console.
+2. Click on the project drop-down at the top, then “New Project”.
+3. Enter a project name and click “Create”.
+4. In the Google Cloud Console, navigate to “APIs & Services” > “Library”.
+5. Search for “YouTube Data API v3” and click on it.
+6. Click “Enable”.
+7. Go to “APIs & Services” > “Credentials”.
+8. Click “+ CREATE CREDENTIALS” and select “API key”.
+9. Copy the generated API key.
+
+# Conclusion
+It starts by extracting the video ID from a provided YouTube URL and then uses the YouTube Data API to fetch the video’s title. Next, it retrieves the video’s transcript using the YouTube Transcript API. The title and transcript data are then saved to a CSV file, with the transcript entries listed alongside their start times. If the transcript retrieval is successful, the file is saved with a name derived from the video ID. In the above code, we are performing topic modelling on the text data using Non-negative Matrix Factorization (NMF). It starts by defining the number of features and topics and then uses CountVectorizer to convert the text data into a matrix of token counts to filter out common English stop words. The NMF model is then fitted to this term-document matrix to identify a specified number of topics. The display_topics function extracts and prints the top words associated with each topic, which helps to interpret the main themes in the transcript. In the above code, we are assigning topics to each text segment in the transcript based on the previously fitted NMF model. It starts by transforming the term-document matrix into a topic distribution for each text segment using the NMF model. It then ensures that the lengths of the topic distribution and the transcript dataframe match by trimming any extra rows in the topic distribution. Finally, it computes the dominant topic for each text segment by finding the topic with the highest value in the topic distribution and assigns this topic to the corresponding text segment in the transcript dataframe, which stores the results in a new column called ‘dominant_topic‘.
+<br>
+In the above code, we are converting the final chapter breakpoints into a readable time format and generating meaningful names for each chapter. For each chapter breakpoint, it converts the breakpoint from seconds into a formatted time string and adds it to the chapter_points list. It then concatenates the text of all segments within the chapter to form the chapter text. Then, by using TF-IDF vectorization, it extracts the top three key phrases from this text to create a concise chapter name, which is appended to the chapter_names list. Finally, it prints the chapter points along with their generated names to provide a clear and readable structure for the video chapters. So, this is how Video Chaptering works. Video chaptering is the process of dividing a video into distinct segments, each labelled with a specific title or chapter name, to enhance navigation and user experience.
+
+# Contributing
+If you are interested in contributing to the project, please create a fork of the repository and submit a pull request. All contributions are welcome and appreciated.
